@@ -10,7 +10,7 @@ from .utils import (
     check_odent_library,
 )
 
-remote_version = update_is_availible()
+# remote_version = update_is_availible()
 
 
 class ODENT_PT_MainPanel(bpy.types.Panel):
@@ -68,11 +68,11 @@ class ODENT_PT_MainPanel(bpy.types.Panel):
         # coll.operator("odent.welcome_dialog", text=f"{OdentConstants.ADDON_NAME}, (ver. {OdentConstants.ADDON_VER_DATE})")
                
 
-        if remote_version:
-            grid = box.grid_flow(columns=1, align=True)
-            grid.alert = True
-            grid.label(text=f"ODent update is availible :{remote_version} ")
-            grid.operator("wm.odent_checkupdate", text="Update", icon="FILE_REFRESH")
+        # if OdentConstants.REMOTE_VERSION :
+        #     grid = box.grid_flow(columns=1, align=True)
+        #     grid.alert = True
+        #     grid.label(text=f"ODent update is availible :{remote_version} ")
+        #     grid.operator("wm.odent_checkupdate", text="Update", icon="FILE_REFRESH")
 
         if not bpy.data.filepath:
             # box = layout.box()

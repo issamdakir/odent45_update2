@@ -31,6 +31,7 @@ odent_cts = utils.OdentConstants
 addon_name = odent_cts.ADDON_NAME
 addon_dir_path = odent_cts.ADDON_DIR
 odent_version_date = odent_cts.ADDON_VER_DATE
+
 odent_log = utils.odent_log
 resources_path = odent_cts.RESOURCES
 odent_modules_path = odent_cts.ODENT_MODULES_PATH
@@ -68,6 +69,7 @@ utils.replace_dir(odent_new_modules, odent_modules_path)
 ##############################################################################
 
 missing_modules, imports = utils.import_required_modules(required_3rdparty_modules)
+
 
 ##############################################################################
 #common classes :
@@ -210,7 +212,7 @@ class ODENT_OT_welcome_dialog(bpy.types.Operator):
         global missing_modules
         
         layout = self.layout
-        
+        remote_version = utils.update_is_availible()
         prefs = context.preferences.addons[__name__].preferences
         
         odent_icons = odent_cts.ODENT_ICONS
@@ -270,7 +272,17 @@ class ODENT_OT_welcome_dialog(bpy.types.Operator):
         
         r = layout.row()
         r.alignment = 'EXPAND'
-        r.operator(utils.ODENT_OT_checkUpdate.bl_idname, text="Check for addon updates", icon="SETTINGS")
+        
+        if remote_version :
+            r.alert = True
+            r.label(text=f"ODent update is availible :{remote_version} ")
+            r = layout.row()
+            r.alignment = 'EXPAND'
+            r.alert = True
+            r.operator("wm.odent_checkupdate", text="Update", icon="FILE_REFRESH")
+        
+        
+        # r.operator(utils.ODENT_OT_checkUpdate.bl_idname, text="Check for addon updates", icon="SETTINGS")
         
         r = layout.row()
         r.alignment = 'EXPAND'
