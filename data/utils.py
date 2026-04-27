@@ -201,7 +201,7 @@ class OdentColors:
 class OdentConstants:
     """Odent constants"""
 
-    DEBUG = 0
+    DEBUG = 1
     ODENT_LIB_NAME = "Odent_Library"
     ODENT_LIB_ARCHIVE_NAME = "Odent_Library_Archive"
     ADDON_VER_NAME = "ODENT_Version.txt"
@@ -545,6 +545,8 @@ class ODENT_OT_checkUpdate(bpy.types.Operator):
                     message=_message, rect_color=OdentColors.red, sleep_time=2
                 )
                 return {"CANCELLED"}
+            
+            odent_log(f"update zip extracted to : {update_root}")
 
             ODENT_GpuDrawText(message_list=["Preparing update..."])
             addon_update_preinstall(update_root)
@@ -595,7 +597,7 @@ class ODENT_OT_checkUpdate(bpy.types.Operator):
             f"Current version = {addon_version}, New version = {update_version}",
             "<ENTER> : to install last update / <ESC> : to cancel",
         ]
-        ODENT_GpuDrawText(message_list=txt_list, rect_color=OdentColors.yellow)
+        ODENT_GpuDrawText(message_list=txt_list)
         context.window_manager.modal_handler_add(self)
         return {"RUNNING_MODAL"}
 
