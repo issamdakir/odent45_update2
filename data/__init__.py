@@ -207,7 +207,7 @@ class ODENT_OT_welcome_dialog(bpy.types.Operator):
         
         # return context.window_manager.invoke_props_dialog(self, width=600)
         # return context.window_manager.invoke_popup(self, width=1280)
-        return context.window_manager.invoke_props_dialog(self, width=1280)
+        return context.window_manager.invoke_props_dialog(self, width=800)
     def draw(self, context):
         global missing_modules
         

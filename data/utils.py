@@ -542,7 +542,7 @@ class ODENT_OT_checkUpdate(bpy.types.Operator):
             _message, update_root = addon_update_download()
             if _message:
                 ODENT_GpuDrawText(
-                    message=_message, rect_color=OdentColors.red, sleep_time=2
+                    messag_liste=_message, rect_color=OdentColors.red, sleep_time=2
                 )
                 return {"CANCELLED"}
             
