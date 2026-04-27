@@ -549,10 +549,21 @@ class ODENT_OT_checkUpdate(bpy.types.Operator):
             odent_log(f"update zip extracted to : {update_root}")
 
             ODENT_GpuDrawText(message_list=["Preparing update..."])
-            addon_update_preinstall(update_root)
+            need_restart = addon_update_preinstall(update_root)
             add_odent_libray()
-            message = ["Please restart blender to finalize Odent update."]
-            ODENT_GpuDrawText(message_list=message, rect_color=OdentColors.green)
+            if need_restart :
+                message = ["Please restart blender to finalize Odent update."]
+                ODENT_GpuDrawText(message_list=message, rect_color=OdentColors.green)
+            else :
+                try :
+                    bpy.ops.script.reload()
+                    message = ["Update completed successfully."]
+                    ODENT_GpuDrawText(message_list=message, rect_color=OdentColors.green)
+                except Exception as er:
+                    odent_log(f"reload scripts error : {er}")
+                    message = ["Please restart blender to finalize Odent update."]
+                    ODENT_GpuDrawText(message_list=message, rect_color=OdentColors.green)
+            
             return {"FINISHED"}
         return {"RUNNING_MODAL"}
 
@@ -1064,7 +1075,7 @@ def set_modules_path(modules_path=OdentConstants.ODENT_MODULES_PATH):
 
 
 def addon_update_preinstall(update_root):
-
+    need_restart = False
     update_data_map_json = join(update_root, OdentConstants.UPDATE_MAP_JSON)
     update_data_map_dict = open_json(update_data_map_json)
     update_data_dir = join(update_root, "data")
@@ -1088,6 +1099,7 @@ def addon_update_preinstall(update_root):
 
         if OdentConstants.ODENT_MODULES_NAME in src.lower():
             shutil.move(src, OdentConstants.RESOURCES)
+            need_restart  = True
         else:
             if not exists(dirname(dst)):
                 os.makedirs(dirname(dst))
@@ -1096,6 +1108,8 @@ def addon_update_preinstall(update_root):
                 os.remove(dst) if isfile(dst) else shutil.rmtree(dst)
 
             shutil.move(src, dirname(dst))
+    
+    return need_restart
 
 
 def addon_update_download():
