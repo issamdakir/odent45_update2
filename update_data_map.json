@@ -1,0 +1,78 @@
+{
+    "__init__.py": [
+        "__init__.py"
+    ],
+    "props.py": [
+        "props.py"
+    ],
+    "ui.py": [
+        "ui.py"
+    ],
+    
+    "utils.py": [
+        "utils.py"
+    ],
+
+
+    
+    "Operators": ["Operators"],
+        "looptools.py": [
+            "Operators",
+            "looptools.py"
+        ],
+        "MeshRegAuto.exe": [
+            "Operators",
+            "MeshRegAuto.exe"
+        ],
+
+        "ODENT_Operators.py": [
+            "Operators",
+            "ODENT_Operators.py"
+        ],
+        "ODENT_Utils.py": [
+            "Operators",
+            "ODENT_Utils.py"
+        ],
+
+
+
+    "Resources": ["Resources"],
+        "BlendData" : ["Resources","BlendData"],
+            "ODENT_BlendData.blend": [
+                "Resources",
+                "BlendData",
+                "ODENT_BlendData.blend"
+            ],
+        "icons" : ["Resources", "icons"],
+            "odent_logo.png": [
+                "Resources",
+                "icons",
+                "odent_logo.png"
+            ],
+            "telegram_logo.png": [
+                "Resources",
+                "icons",
+                "telegram_logo.png"
+            ],
+    
+        "Odent_Library_Archive": ["Resources","Odent_Library_Archive"],
+            "AssetsLibrary.zip": [
+                "Resources",
+                "Odent_Library_Archive",
+                "AssetsLibrary.zip"
+            ],
+    
+    
+        "odent_app_template.zip": [
+            "Resources",
+            "odent_app_template.zip"
+        ],
+        "ODENT_Version.txt": [
+            "Resources",
+            "ODENT_Version.txt"
+        ],
+        "startup.blend": [
+            "Resources",
+            "startup.blend"
+        ]
+}
