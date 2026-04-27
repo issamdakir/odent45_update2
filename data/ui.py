@@ -71,7 +71,7 @@ class ODENT_PT_MainPanel(bpy.types.Panel):
         if remote_version:
             grid = box.grid_flow(columns=1, align=True)
             grid.alert = True
-            grid.label(text=f"ODent update is availible :{self.remote_version} ")
+            grid.label(text=f"ODent update is availible :{remote_version} ")
             grid.operator("wm.odent_checkupdate", text="Update", icon="FILE_REFRESH")
 
         if not bpy.data.filepath:
